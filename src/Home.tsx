@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { PageStyleWrapper } from './StyleWrapper';
 import { Box, Button, InputAdornment, TextField } from '@mui/material';
 import { FieldValues, useForm } from 'react-hook-form';
-import { generateSchedule, ScheduleData } from './calculation';
 import { Table } from './components/Table';
+import { generateSchedule, ScheduleData } from './calculation';
+import { PageStyleWrapper } from './StyleWrapper';
 
 const Home = () => {
   const { register, handleSubmit } = useForm();
