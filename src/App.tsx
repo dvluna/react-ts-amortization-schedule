@@ -15,16 +15,16 @@ const darkTheme = createTheme({
 
 const App = () => {
   return (
-    <BaselineStyleWrapper>
-      <ThemeProvider theme={darkTheme}>
-        <NavMenuContextProvider>
-          <BrowserRouter>
+    <BrowserRouter>
+      <BaselineStyleWrapper>
+        <ThemeProvider theme={darkTheme}>
+          <NavMenuContextProvider>
             <NavBar />
             <Routes />
-          </BrowserRouter>
-        </NavMenuContextProvider>
-      </ThemeProvider>
-    </BaselineStyleWrapper>
+          </NavMenuContextProvider>
+        </ThemeProvider>
+      </BaselineStyleWrapper>
+    </BrowserRouter>
   )
 }
 
