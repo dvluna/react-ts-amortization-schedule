@@ -45,10 +45,23 @@ const Home = () => {
     <PageStyleWrapper>
       <Title>Amortization Schedule Calculator</Title>
       <form onSubmit={handleSubmit(onHandleSubmit)}>
-        <TextField required type="number" label="Load amount" {...register(`principle`)} />
-        <TextField required type="number" label="Loan term (in years)" {...register(`loanTerm`)} />
         <TextField
-          required type="number"
+          required
+          type="number"
+          label="Loan amount"
+          InputProps={{ startAdornment: (<InputAdornment position="start">$</InputAdornment>) }}
+          {...register(`principle`)}
+        />
+        <TextField
+          required
+          type="number"
+          label="Loan term"
+          InputProps={{ endAdornment: (<InputAdornment position="end">years</InputAdornment>) }}
+          {...register(`loanTerm`)}
+        />
+        <TextField
+          required
+          type="number"
           label="Interest rate"
           inputProps={{ step: 0.001 }}
           InputProps={{ endAdornment: (<InputAdornment position="end">%</InputAdornment>) }}
