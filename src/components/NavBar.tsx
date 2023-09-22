@@ -6,13 +6,25 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { useNavMenu } from '../NavMenuContext';
 import { useNavigate } from 'react-router-dom';
 
+type NavMenuItem = {
+  label: string;
+  to: string;
+};
+
 const NavBar = () => {
   const { isOpen, toggleIsOpen } = useNavMenu();
 
   const navigate = useNavigate();
 
-  const handleNavHome = () => {
-    navigate("/");
+  const navMenuItems: NavMenuItem[] = [
+    {
+      label: `Home`,
+      to: `/`
+    }
+  ];
+
+  const handleNavigation = (path: string) => () => {
+    navigate(path);
   };
 
   return (
@@ -27,11 +39,13 @@ const NavBar = () => {
       <Drawer anchor="left" open={isOpen} onClose={toggleIsOpen}>
         <Box sx={{ width: 250 }} onClick={toggleIsOpen} onKeyDown={toggleIsOpen}>
           <List>
-            <ListItem disablePadding>
-              <ListItemButton onClick={handleNavHome}>
-                <ListItemText primary="Home" />
-              </ListItemButton>
-            </ListItem>
+            {navMenuItems.map((navMenuItem) => (
+              <ListItem key={navMenuItem.label} disablePadding>
+                <ListItemButton onClick={handleNavigation(navMenuItem.to)}>
+                  <ListItemText primary={navMenuItem.label} />
+                </ListItemButton>
+              </ListItem>
+            ))}
           </List>
         </Box>
       </Drawer>
