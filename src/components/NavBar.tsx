@@ -1,10 +1,19 @@
 import React from 'react';
-import { AppBar, Box, Drawer, IconButton, Toolbar } from '@mui/material';
+import {
+  AppBar, Box, Drawer, IconButton, List, ListItem, ListItemButton, ListItemText, Toolbar
+} from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useNavMenu } from '../NavMenuContext';
+import { useNavigate } from 'react-router-dom';
 
 const NavBar = () => {
   const { isOpen, toggleIsOpen } = useNavMenu();
+
+  const navigate = useNavigate();
+
+  const handleNavHome = () => {
+    navigate("/");
+  };
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -16,7 +25,15 @@ const NavBar = () => {
         </Toolbar>
       </AppBar>
       <Drawer anchor="left" open={isOpen} onClose={toggleIsOpen}>
-        Menu Item List goes here...
+        <Box sx={{ width: 250 }} onClick={toggleIsOpen} onKeyDown={toggleIsOpen}>
+          <List>
+            <ListItem disablePadding>
+              <ListItemButton onClick={handleNavHome}>
+                <ListItemText primary="Home" />
+              </ListItemButton>
+            </ListItem>
+          </List>
+        </Box>
       </Drawer>
     </Box>
   )
