@@ -43,7 +43,7 @@ const Home = () => {
 
   return (
     <PageStyleWrapper>
-      <Title>Amortization Schedule Calculator</Title>
+      <Title>Loan Amortization Schedule Calculator</Title>
       <form onSubmit={handleSubmit(onHandleSubmit)}>
         <TextField
           required
