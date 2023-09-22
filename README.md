@@ -2,11 +2,11 @@
 
 ## Overview
 
-This is a minimalist loan amortization schedule web app. It is still a work in progress, but should
-calculate your payments correctly. If there are some deviations, they are most likely be caused by
-the `roundToHundreth` function which rounds to the nearest cent. I feel that reflects real world
-calculations a little better, so I am leaving that as is. I may add an option later to toggle the
-rounding and also add currency settings.
+This is a minimalist loan amortization schedule web app written in React with TypeScript. It is
+still a work in progress, but should calculate your payments correctly. If there are any
+deviations, they are most likely be caused by the `roundToHundreth` function which rounds to the
+nearest cent. I feel that reflects real world calculations a little better, so I am leaving that
+as is. I may add an option later to toggle the rounding and also add currency settings.
 
 ## This app uses the following packages
 
