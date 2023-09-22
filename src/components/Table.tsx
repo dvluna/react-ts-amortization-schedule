@@ -2,9 +2,10 @@ import React from 'react';
 import {
   Table as MuiTable,
   TableContainer as MuiTableContainer,
+  TableBody,
   TableCell,
   TableHead as MuiTableHead,
-  TableRow as MuiTableRow
+  TableRow as MuiTableRow,
 } from '@mui/material';
 
 
@@ -23,7 +24,9 @@ const TableHead = ({ labels }: { labels: React.ReactNode[]; }) => {
 
   return (
     <MuiTableHead>
-      {labels.map((cell, index) => <TableCell key={`header-${uniqueId}-${index}`}>{cell}</TableCell>)}
+      <MuiTableRow>
+        {labels.map((cell, index) => <TableCell key={`header-${uniqueId}-${index}`}>{cell}</TableCell>)}
+      </MuiTableRow>
     </MuiTableHead>
   );
 };
@@ -45,7 +48,9 @@ const Table = ({ columnLabels = [], rows = [] }: TableProps) => {
     <MuiTableContainer>
       <MuiTable>
         <TableHead labels={columnLabels} />
-        {rows.map((row, index) => <TableRow row={row} key={`row-${id}-${index}`} />)}
+        <TableBody>
+          {rows.map((row, index) => <TableRow row={row} key={`row-${id}-${index}`} />)}
+        </TableBody>
       </MuiTable>
     </MuiTableContainer>
   );
