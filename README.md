@@ -19,7 +19,7 @@ This project was created using React + TypeScript + Vite
 
 ## Running
 
-```
+```bash
 # At the root of your project run
 
 yarn dev
