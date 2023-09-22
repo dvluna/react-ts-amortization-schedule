@@ -1,5 +1,7 @@
 import React from 'react';
 import { ThemeProvider, createTheme } from '@mui/material';
+import { BrowserRouter } from 'react-router-dom';
+
 import { Routes } from './Routes';
 import { NavBar } from './components/NavBar';
 import { BaselineStyleWrapper } from './StyleWrapper';
@@ -16,8 +18,10 @@ const App = () => {
     <BaselineStyleWrapper>
       <ThemeProvider theme={darkTheme}>
         <NavMenuContextProvider>
-          <NavBar />
-          <Routes />
+          <BrowserRouter>
+            <NavBar />
+            <Routes />
+          </BrowserRouter>
         </NavMenuContextProvider>
       </ThemeProvider>
     </BaselineStyleWrapper>
