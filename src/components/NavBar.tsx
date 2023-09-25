@@ -3,7 +3,7 @@ import {
   AppBar, Box, Drawer, IconButton, List, ListItem, ListItemButton, ListItemText, Toolbar
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import { useNavMenu } from '../NavMenuContext';
+import { useNavMenu, useToggleNavMenu } from '../NavMenuContext';
 import { useNavigate } from 'react-router-dom';
 
 type NavMenuItem = {
@@ -12,7 +12,8 @@ type NavMenuItem = {
 };
 
 const NavBar = () => {
-  const { isOpen, toggleIsOpen } = useNavMenu();
+  const { isOpen } = useNavMenu();
+  const toggleIsOpen = useToggleNavMenu();
 
   const navigate = useNavigate();
 
