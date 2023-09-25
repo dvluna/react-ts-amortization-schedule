@@ -10,6 +10,15 @@ const darkTheme = createTheme({
   palette: {
     mode: `dark`
   },
+  components: {
+    MuiTextField: {
+      styleOverrides: {
+        root: {
+          marginRight: 12
+        }
+      }
+    }
+  }
 });
 
 const App = () => {
