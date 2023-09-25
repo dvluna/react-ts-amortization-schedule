@@ -16,6 +16,8 @@ This project was created using React + TypeScript + Vite
 - [@mui/material](https://mui.com/material-ui/) - Theme and UI components
 - [react-hook-form](https://react-hook-form.com/) - Light and flexible form library
 - [react-router-dom](https://reactrouter.com/) - Client-side routing
+- [usehooks-ts](https://usehooks-ts.com/) - React hook library (Provides `useLocalStorage`)
+- [immer](https://immerjs.github.io/immer/) - Simplifies handling immutable states.
 
 ## Running
 
