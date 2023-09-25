@@ -4,12 +4,19 @@ import { produce } from 'immer';
 import type { Draft } from 'immer';
 import { useLocalStorage } from 'usehooks-ts';
 
+type NavMenuItem = {
+  label: string;
+  to: string;
+};
+
 type State = {
   isOpen: boolean;
+  navMenuItems: NavMenuItem[];
 };
 
 type ActionType =
-  | { type: `TOGGLE_NAV` };
+  | { type: `TOGGLE_NAV` }
+  | { type: `SET_NAV_MENU_ITEMS`, navMenuItems: NavMenuItem[] };
 
 type DispatchContext = React.Dispatch<ActionType>;
 
@@ -18,6 +25,11 @@ const reducer: React.Reducer<State, ActionType> = produce(
     switch (action.type) {
       case `TOGGLE_NAV`:
         draft.isOpen = !draft.isOpen;
+        break;
+
+      case `SET_NAV_MENU_ITEMS`:
+        draft.navMenuItems = action.navMenuItems;
+        break;
     }
 
     /** no default */
@@ -29,7 +41,7 @@ const DispatchContext = React.createContext<DispatchContext>(() => { })
 
 const NavMenuContextProvider = ({ children }: React.PropsWithChildren) => {
   const [isOpen, setIsOpen] = useLocalStorage(`isNavOpen`, false);
-  const [state, dispatch] = React.useReducer(reducer, { isOpen });
+  const [state, dispatch] = React.useReducer(reducer, { isOpen, navMenuItems: [] });
 
   React.useEffect(() => {
     setIsOpen(state.isOpen);
@@ -60,5 +72,11 @@ const useToggleNavMenu = () => {
   return toggleNav;
 };
 
+const useSetNavMenuItems = (navMenuItems: NavMenuItem[]) => {
+  const dispatch = React.useContext(DispatchContext);
+
+  dispatch({ type: `SET_NAV_MENU_ITEMS`, navMenuItems });
+}
+
 // eslint-disable-next-line react-refresh/only-export-components
-export { useNavMenu, useToggleNavMenu, NavMenuContextProvider };
+export { useNavMenu, useSetNavMenuItems, useToggleNavMenu, NavMenuContextProvider };

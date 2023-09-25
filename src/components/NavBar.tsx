@@ -6,23 +6,10 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { useNavMenu, useToggleNavMenu } from '../NavMenuContext';
 import { useNavigate } from 'react-router-dom';
 
-type NavMenuItem = {
-  label: string;
-  to: string;
-};
-
 const NavBar = () => {
-  const { isOpen } = useNavMenu();
+  const { isOpen, navMenuItems } = useNavMenu();
   const toggleIsOpen = useToggleNavMenu();
-
   const navigate = useNavigate();
-
-  const navMenuItems: NavMenuItem[] = [
-    {
-      label: `Home`,
-      to: `/`
-    }
-  ];
 
   const handleNavigation = (path: string) => () => {
     navigate(path);

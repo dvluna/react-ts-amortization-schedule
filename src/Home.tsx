@@ -8,6 +8,7 @@ import { PageStyleWrapper } from './StyleWrapper';
 
 const Home = () => {
   const { register, handleSubmit } = useForm();
+
   const [scheduleData, setScheduleData] = React.useState<ScheduleData[]>([]);
 
   const onHandleSubmit = ({ principle, loanTerm, interestRate }: FieldValues) => {
