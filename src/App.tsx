@@ -1,37 +1,22 @@
 import React from 'react';
-import { ThemeProvider, createTheme } from '@mui/material';
-import { BrowserRouter } from 'react-router-dom';
 
+import { NavBar } from './components/NavBar';
+
+import { useSetNavMenuItems } from './NavMenuContext';
 import { Routes } from './Routes';
-import { BaselineStyleWrapper } from './StyleWrapper';
-import { NavMenuContextProvider } from './NavMenuContext';
-
-const darkTheme = createTheme({
-  palette: {
-    mode: `dark`
-  },
-  components: {
-    MuiTextField: {
-      styleOverrides: {
-        root: {
-          marginRight: 12
-        }
-      }
-    }
-  }
-});
 
 const App = () => {
-  return (
-    <BrowserRouter>
-      <BaselineStyleWrapper>
-        <ThemeProvider theme={darkTheme}>
-          <NavMenuContextProvider>
-            <Routes />
-          </NavMenuContextProvider>
-        </ThemeProvider>
-      </BaselineStyleWrapper>
-    </BrowserRouter>
+  useSetNavMenuItems([
+    {
+      label: `Home`,
+      to: `/`
+    }
+  ]);
+
+  return (<>
+    <NavBar />
+    <Routes />
+  </>
   )
 }
 
