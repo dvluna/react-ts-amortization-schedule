@@ -13,10 +13,11 @@ const App = () => {
     }
   ]);
 
-  return (<>
-    <NavBar />
-    <Routes />
-  </>
+  return (
+    <>
+      <NavBar />
+      <Routes />
+    </>
   )
 }
 
