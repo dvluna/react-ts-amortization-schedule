@@ -17,7 +17,7 @@ This project was created using React + TypeScript + Vite
 - [react-hook-form](https://react-hook-form.com/) - Light and flexible form library
 - [react-router-dom](https://reactrouter.com/) - Client-side routing
 - [usehooks-ts](https://usehooks-ts.com/) - React hook library (Provides `useLocalStorage`)
-- [immer](https://immerjs.github.io/immer/) - Simplifies handling immutable states.
+- [immer](https://immerjs.github.io/immer/) - Library that simplifies the process of writing immutable update logic.
 
 ## Running
 
