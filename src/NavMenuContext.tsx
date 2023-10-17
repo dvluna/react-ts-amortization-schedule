@@ -56,11 +56,7 @@ const NavMenuContextProvider = ({ children }: React.PropsWithChildren) => {
   );
 }
 
-const useNavMenu = () => {
-  const context = React.useContext(NavMenuContext);
-
-  return context;
-}
+const useNavMenu = () => React.useContext(NavMenuContext);
 
 const useToggleNavMenu = () => {
   const dispatch = React.useContext(DispatchContext);
