@@ -5,11 +5,9 @@ import { Home } from './Home';
 
 function Routes() {
   return (
-    <>
-      <BrowserRoutes>
-        <Route path="/" Component={Home} />
-      </BrowserRoutes>
-    </>
+    <BrowserRoutes>
+      <Route path="/" Component={Home} />
+    </BrowserRoutes>
   );
 }
 
