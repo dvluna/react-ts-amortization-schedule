@@ -74,5 +74,4 @@ const useSetNavMenuItems = (navMenuItems: NavMenuItem[]) => {
   dispatch({ type: `SET_NAV_MENU_ITEMS`, navMenuItems });
 }
 
-// eslint-disable-next-line react-refresh/only-export-components
 export { useNavMenu, useSetNavMenuItems, useToggleNavMenu, NavMenuContextProvider };
