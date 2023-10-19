@@ -85,7 +85,6 @@ const Home = () => {
   );
 }
 
-
 const Title = styled.h1({ fontSize: 28 });
 
 export { Home };
