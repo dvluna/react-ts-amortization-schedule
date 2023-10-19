@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   AppBar, Box, Drawer, IconButton, List, ListItem, ListItemButton, ListItemText, Toolbar
 } from '@mui/material';

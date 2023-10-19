@@ -15,9 +15,7 @@ type TableProps = {
   rows: React.ReactNode[][];
 };
 
-const TableHead = ({ labels }: { labels: React.ReactNode[]; }) => {
-  const uniqueId = React.useId();
-
+const TableHead = ({ id, labels }: { labels: React.ReactNode[]; id: string; }) => {
   if (!labels.length) {
     return <></>;
   }
@@ -25,15 +23,13 @@ const TableHead = ({ labels }: { labels: React.ReactNode[]; }) => {
   return (
     <MuiTableHead>
       <MuiTableRow>
-        {labels.map((cell, index) => <TableCell key={`header-${uniqueId}-${index}`}>{cell}</TableCell>)}
+        {labels.map((cell, index) => <TableCell key={`header-${id}-${index}`}>{cell}</TableCell>)}
       </MuiTableRow>
     </MuiTableHead>
   );
 };
 
-const TableRow = ({ row }: { row: React.ReactNode[]; }) => {
-  const id = React.useId();
-
+const TableRow = ({ id, row }: { row: React.ReactNode[]; id: string; }) => {
   return (
     <MuiTableRow>
       {row.map((cell, index) => <TableCell key={`cell-${id}-${index}`}>{cell}</TableCell>)}
@@ -47,9 +43,9 @@ const Table = ({ columnLabels = [], rows = [] }: TableProps) => {
   return (
     <MuiTableContainer>
       <MuiTable>
-        <TableHead labels={columnLabels} />
+        <TableHead labels={columnLabels} id={id} />
         <TableBody>
-          {rows.map((row, index) => <TableRow row={row} key={`row-${id}-${index}`} />)}
+          {rows.map((row, index) => <TableRow row={row} id={id} key={`row-${id}-${index}`} />)}
         </TableBody>
       </MuiTable>
     </MuiTableContainer>
