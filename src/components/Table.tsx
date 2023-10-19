@@ -8,10 +8,14 @@ import {
   TableRow,
 } from '@mui/material';
 
+export type Row = {
+  id: string;
+  data: React.ReactNode[]
+};
 
 type TableProps = {
   columnLabels?: React.ReactNode[];
-  rows: React.ReactNode[][];
+  rows: Row[];
 };
 
 const Table = ({ columnLabels = [], rows = [] }: TableProps) => {
@@ -25,19 +29,19 @@ const Table = ({ columnLabels = [], rows = [] }: TableProps) => {
             })}
           </TableRow>
         </TableHead>}
-        <TableBody>
-          {rows.map((row, rowIndex) => {
+        {!!rows.length && <TableBody>
+          {rows.map((row) => {
             return (
-              <TableRow key={`table-row-${rowIndex}`} >
-                {row.map((cell, cellIndex) => {
+              <TableRow key={`table-row-${row.id}`} >
+                {row.data.map((cell, cellIndex) => {
                   return (
-                    <TableCell key={`table-row-cell-${rowIndex}-${cellIndex}`}>{cell}</TableCell>
+                    <TableCell key={`table-row-cell-${row.id}-${cellIndex}`}>{cell}</TableCell>
                   );
                 })}
               </TableRow>
             );
           })}
-        </TableBody>
+        </TableBody>}
       </MuiTable>
     </TableContainer>
   );

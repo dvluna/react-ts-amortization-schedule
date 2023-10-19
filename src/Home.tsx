@@ -2,7 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { Box, Button, InputAdornment, TextField } from '@mui/material';
 import { useForm } from 'react-hook-form';
-import { Table } from './components/Table';
+import { Row, Table } from './components/Table';
 import { generateSchedule, ScheduleData } from './calculation';
 import { PageStyleWrapper } from './StyleWrapper';
 
@@ -38,14 +38,20 @@ const Home = () => {
     `Ending Principle`
   ];
 
-  const rows = scheduleData.map((data: ScheduleData, index): React.ReactNode[] => {
-    return [
-      index + 1,
-      data.interestPayment.toLocaleString(`en-US`, { style: `currency`, currency: `USD` }),
-      data.principlePayment.toLocaleString(`en-US`, { style: `currency`, currency: `USD` }),
-      data.monthlyPayment.toLocaleString(`en-US`, { style: `currency`, currency: `USD` }),
-      data.principle.toLocaleString(`en-US`, { style: `currency`, currency: `USD` }),
-    ];
+  const rows = scheduleData.map((data: ScheduleData, index): Row => {
+    const locale = `en-US`;
+    const options = { style: `currency`, currency: `USD` };
+
+    return {
+      id: crypto.randomUUID(),
+      data: [
+        index + 1,
+        data.interestPayment.toLocaleString(locale, options),
+        data.principlePayment.toLocaleString(locale, options),
+        data.monthlyPayment.toLocaleString(locale, options),
+        data.principle.toLocaleString(locale, options),
+      ]
+    };
   });
 
   return (
