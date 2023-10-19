@@ -2,7 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { Box, Button, InputAdornment, TextField } from '@mui/material';
 import { useForm } from 'react-hook-form';
-import { TableRowData, Table } from './components/Table';
+import { Table, TableCellData, TableRowData } from './components/Table';
 import { generateSchedule, ScheduleData } from './calculation';
 import { PageStyleWrapper } from './StyleWrapper';
 
@@ -30,12 +30,27 @@ const Home = () => {
     setScheduleData(scheduleData);
   };
 
-  const columnLabels = [
-    `Month`,
-    `Interest Payment`,
-    `Principle Payment`,
-    `Monthly Payment`,
-    `Ending Principle`
+  const columnLabels: TableCellData[] = [
+    {
+      value: `Month`,
+      key: `month`
+    },
+    {
+      value: `Interest Payment`,
+      key: `interestPayment`
+    },
+    {
+      value: `Principle Payment`,
+      key: `principlePayment`
+    },
+    {
+      value: `Monthly Payment`,
+      key: `monthlyPayment`
+    },
+    {
+      value: `Ending Principle`,
+      key: `endingPrinciple`
+    }
   ];
 
   const rows = scheduleData.map((data: ScheduleData, index): TableRowData => {
@@ -45,12 +60,27 @@ const Home = () => {
     return {
       id: crypto.randomUUID(),
       data: [
-        index + 1,
-        data.interestPayment.toLocaleString(locale, options),
-        data.principlePayment.toLocaleString(locale, options),
-        data.monthlyPayment.toLocaleString(locale, options),
-        data.principle.toLocaleString(locale, options),
-      ]
+        {
+          value: index + 1,
+          key: `paymentNum`,
+        },
+        {
+          value: data.interestPayment.toLocaleString(locale, options),
+          key: `interestPayment`,
+        },
+        {
+          value: data.principlePayment.toLocaleString(locale, options),
+          key: `principlePayment`,
+        },
+        {
+          value: data.monthlyPayment.toLocaleString(locale, options),
+          key: `monthlyPayment`,
+        },
+        {
+          value: data.principle.toLocaleString(locale, options),
+          key: `principle`,
+        }
+      ],
     };
   });
 
