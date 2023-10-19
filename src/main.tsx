@@ -12,13 +12,24 @@ const darkTheme = createTheme({
     mode: `dark`
   },
   components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          backgroundColor: `#252525`,
+          color: `#ddd`,
+          '&:hover': {
+            backgroundColor: `#333`
+          },
+        },
+      }
+    },
     MuiTextField: {
       styleOverrides: {
         root: {
           marginRight: 12
         }
       }
-    }
+    },
   }
 });
 
