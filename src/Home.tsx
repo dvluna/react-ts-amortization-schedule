@@ -2,7 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { Box, Button, InputAdornment, TextField } from '@mui/material';
 import { useForm } from 'react-hook-form';
-import { Row, Table } from './components/Table';
+import { TableRowData, Table } from './components/Table';
 import { generateSchedule, ScheduleData } from './calculation';
 import { PageStyleWrapper } from './StyleWrapper';
 
@@ -38,7 +38,7 @@ const Home = () => {
     `Ending Principle`
   ];
 
-  const rows = scheduleData.map((data: ScheduleData, index): Row => {
+  const rows = scheduleData.map((data: ScheduleData, index): TableRowData => {
     const locale = `en-US`;
     const options = { style: `currency`, currency: `USD` };
 

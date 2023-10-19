@@ -8,14 +8,14 @@ import {
   TableRow,
 } from '@mui/material';
 
-export type Row = {
+export type TableRowData = {
   id: string;
   data: React.ReactNode[]
 };
 
 type TableProps = {
   columnLabels?: React.ReactNode[];
-  rows: Row[];
+  rows: TableRowData[];
 };
 
 const Table = ({ columnLabels = [], rows = [] }: TableProps) => {
