@@ -9,25 +9,26 @@ import { NavMenuContextProvider } from './NavMenuContext';
 
 const darkTheme = createTheme({
   palette: {
-    mode: `dark`
+    mode: `dark`,
+    primary: {
+      main: `#DDD`,
+      dark: `#333`,
+      contrastText: `#CCC`,
+    },
   },
   components: {
     MuiButton: {
       styleOverrides: {
         root: {
           backgroundColor: `#252525`,
-          color: `#ddd`,
-          '&:hover': {
-            backgroundColor: `#333`
-          },
         },
       }
     },
     MuiTextField: {
       styleOverrides: {
         root: {
-          marginRight: 12
-        }
+          marginRight: 12,
+        },
       }
     },
   }
