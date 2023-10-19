@@ -1,11 +1,11 @@
 import React from 'react';
 import {
   Table as MuiTable,
-  TableContainer as MuiTableContainer,
+  TableContainer,
   TableBody,
   TableCell,
-  TableHead as MuiTableHead,
-  TableRow as MuiTableRow,
+  TableHead,
+  TableRow,
 } from '@mui/material';
 
 
@@ -14,40 +14,32 @@ type TableProps = {
   rows: React.ReactNode[][];
 };
 
-const TableHead = ({ id, labels }: { labels: React.ReactNode[]; id: string; }) => {
-  if (!labels.length) {
-    return <></>;
-  }
-
-  return (
-    <MuiTableHead>
-      <MuiTableRow>
-        {labels.map((cell, index) => <TableCell key={`header-${id}-${index}`}>{cell}</TableCell>)}
-      </MuiTableRow>
-    </MuiTableHead>
-  );
-};
-
-const TableRow = ({ id, row }: { row: React.ReactNode[]; id: string; }) => {
-  return (
-    <MuiTableRow>
-      {row.map((cell, index) => <TableCell key={`cell-${id}-${index}`}>{cell}</TableCell>)}
-    </MuiTableRow>
-  );
-}
-
 const Table = ({ columnLabels = [], rows = [] }: TableProps) => {
-  const id = React.useId();
-
   return (
-    <MuiTableContainer>
+    <TableContainer>
       <MuiTable>
-        <TableHead labels={columnLabels} id={id} />
+        {!!columnLabels.length && <TableHead>
+          <TableRow>
+            {columnLabels.map((cell, index) => {
+              return (<TableCell key={`header-row-${index}`}>{cell}</TableCell>);
+            })}
+          </TableRow>
+        </TableHead>}
         <TableBody>
-          {rows.map((row, index) => <TableRow row={row} id={id} key={`row-${id}-${index}`} />)}
+          {rows.map((row, rowIndex) => {
+            return (
+              <TableRow key={`table-row-${rowIndex}`} >
+                {row.map((cell, cellIndex) => {
+                  return (
+                    <TableCell key={`row-cell-${rowIndex}-${cellIndex}`}>{cell}</TableCell>
+                  );
+                })}
+              </TableRow>
+            );
+          })}
         </TableBody>
       </MuiTable>
-    </MuiTableContainer>
+    </TableContainer>
   );
 };
 
