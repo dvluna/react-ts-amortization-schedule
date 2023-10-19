@@ -11,16 +11,16 @@ const darkTheme = createTheme({
   palette: {
     mode: `dark`,
     primary: {
-      main: `#DDD`,
-      dark: `#333`,
-      contrastText: `#CCC`,
+      main: `#E0E0E0`,
+      dark: `#616161`,
+      contrastText: `#EEE`,
     },
   },
   components: {
     MuiButton: {
       styleOverrides: {
         root: {
-          backgroundColor: `#252525`,
+          backgroundColor: `#424242`,
         },
       }
     },
