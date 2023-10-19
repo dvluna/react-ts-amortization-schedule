@@ -10,7 +10,6 @@ import {
 
 
 type TableProps = {
-  title?: React.ReactNode;
   columnLabels?: React.ReactNode[];
   rows: React.ReactNode[][];
 };
