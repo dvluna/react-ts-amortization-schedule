@@ -21,7 +21,7 @@ const Table = ({ columnLabels = [], rows = [] }: TableProps) => {
         {!!columnLabels.length && <TableHead>
           <TableRow>
             {columnLabels.map((cell, index) => {
-              return (<TableCell key={`header-row-${index}`}>{cell}</TableCell>);
+              return (<TableCell key={`header-row-cell-${index}`}>{cell}</TableCell>);
             })}
           </TableRow>
         </TableHead>}
@@ -31,7 +31,7 @@ const Table = ({ columnLabels = [], rows = [] }: TableProps) => {
               <TableRow key={`table-row-${rowIndex}`} >
                 {row.map((cell, cellIndex) => {
                   return (
-                    <TableCell key={`row-cell-${rowIndex}-${cellIndex}`}>{cell}</TableCell>
+                    <TableCell key={`table-row-cell-${rowIndex}-${cellIndex}`}>{cell}</TableCell>
                   );
                 })}
               </TableRow>
