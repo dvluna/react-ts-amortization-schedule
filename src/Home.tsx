@@ -5,15 +5,22 @@ import { useForm } from 'react-hook-form';
 import { Table, TableCellData, TableRowData } from './components/Table';
 import { generateSchedule, ScheduleData } from './calculation';
 import { PageStyleWrapper } from './StyleWrapper';
+import { useAppContext } from './AppContext';
 
 type FormValues = {
+  /** Loan amount */
   principle: number;
+
+  /** Loan term in years */
   loanTerm: number;
+
+  /** Interest rate (percentage) */
   interestRate: number;
 };
 
 const Home = () => {
   const { register, handleSubmit } = useForm<FormValues>();
+  const { isCalculationRounded } = useAppContext();
 
   const [scheduleData, setScheduleData] = React.useState<ScheduleData[]>([]);
 
@@ -24,7 +31,8 @@ const Home = () => {
     const scheduleData = generateSchedule({
       totalPayments,
       interestRate: interestRateInDecimal,
-      principle
+      principle,
+      isCalculationRounded,
     });
 
     setScheduleData(scheduleData);

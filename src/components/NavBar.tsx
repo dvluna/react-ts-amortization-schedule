@@ -2,12 +2,12 @@ import {
   AppBar, Box, Drawer, IconButton, List, ListItem, ListItemButton, ListItemText, Toolbar
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import { useNavMenu, useToggleNavMenu } from '../NavMenuContext';
+import { useAppContext, useNavMenu } from '../AppContext';
 import { useNavigate } from 'react-router-dom';
 
 const NavBar = () => {
-  const { isOpen, navMenuItems } = useNavMenu();
-  const toggleIsOpen = useToggleNavMenu();
+  const { isNavMenuOpen, navMenuItems } = useAppContext();
+  const { toggleNavMenu } = useNavMenu();
   const navigate = useNavigate();
 
   const handleNavigation = (path: string) => () => {
@@ -18,13 +18,13 @@ const NavBar = () => {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position='static'>
         <Toolbar>
-          <IconButton onClick={toggleIsOpen}>
+          <IconButton onClick={toggleNavMenu}>
             <MenuIcon />
           </IconButton>
         </Toolbar>
       </AppBar>
-      <Drawer anchor="left" open={isOpen} onClose={toggleIsOpen}>
-        <Box sx={{ width: 250 }} onClick={toggleIsOpen} onKeyDown={toggleIsOpen}>
+      <Drawer anchor="left" open={isNavMenuOpen} onClose={toggleNavMenu}>
+        <Box sx={{ width: 250 }} onClick={toggleNavMenu} onKeyDown={toggleNavMenu}>
           <List>
             {navMenuItems.map((navMenuItem) => (
               <ListItem key={navMenuItem.label} disablePadding>

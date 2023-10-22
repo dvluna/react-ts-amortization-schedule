@@ -5,7 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 import { App } from './App'
 import { BaselineStyleWrapper } from './StyleWrapper';
-import { NavMenuContextProvider } from './NavMenuContext';
+import { AppContextProvider } from './AppContext';
 
 const darkTheme = createTheme({
   palette: {
@@ -39,9 +39,9 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <BrowserRouter>
       <BaselineStyleWrapper>
         <ThemeProvider theme={darkTheme}>
-          <NavMenuContextProvider>
+          <AppContextProvider>
             <App />
-          </NavMenuContextProvider>
+          </AppContextProvider>
         </ThemeProvider>
       </BaselineStyleWrapper>
     </BrowserRouter>

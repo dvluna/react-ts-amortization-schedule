@@ -1,10 +1,12 @@
 import { NavBar } from './components/NavBar';
 
-import { useSetNavMenuItems } from './NavMenuContext';
+import { useNavMenu } from './AppContext';
 import { Routes } from './Routes';
 
 const App = () => {
-  useSetNavMenuItems([
+  const { setNavMenuItems } = useNavMenu();
+
+  setNavMenuItems([
     {
       label: `Home`,
       to: `/`
