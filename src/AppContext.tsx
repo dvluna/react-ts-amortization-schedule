@@ -57,8 +57,8 @@ const AppContextProvider = ({ children }: React.PropsWithChildren) => {
   );
 
   const [state, dispatch] = React.useReducer(reducer, {
-    isNavMenuOpen: false,
     isCalculationRounded,
+    isNavMenuOpen: false,
     navMenuItems: []
   });
 
@@ -91,19 +91,19 @@ const useNavMenu = () => {
   return { toggleNavMenu, setNavMenuItems };
 };
 
-const useToggleIsCalculationRounded = () => {
+const useToggleCalculationRounding = () => {
   const dispatch = React.useContext(DispatchContext);
 
-  const toggleNav = React.useCallback(() => {
+  const toggleCalculationRounding = React.useCallback(() => {
     dispatch({ type: `TOGGLE_CALCULATION_ROUNDING` });
   }, [dispatch]);
 
-  return toggleNav;
+  return toggleCalculationRounding;
 };
 
 export {
   useAppContext,
   useNavMenu,
-  useToggleIsCalculationRounded,
+  useToggleCalculationRounding,
   AppContextProvider
 };
