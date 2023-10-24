@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { Box, Button, InputAdornment, TextField } from '@mui/material';
-import { useForm } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import { Table, TableCellData, TableRowData } from './components/Table';
 import { generateSchedule, ScheduleData } from './calculation';
 import { PageStyleWrapper } from './StyleWrapper';
@@ -24,7 +24,7 @@ const Home = () => {
 
   const [scheduleData, setScheduleData] = React.useState<ScheduleData[]>([]);
 
-  const onHandleSubmit = ({ principle, loanTerm, interestRate }: FormValues) => {
+  const onHandleSubmit: SubmitHandler<FormValues> = ({ principle, loanTerm, interestRate }) => {
     const totalPayments = loanTerm * 12;
     const interestRateInDecimal = interestRate / 100;
 
