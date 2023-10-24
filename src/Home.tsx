@@ -2,7 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { Box, Button, InputAdornment, TextField } from '@mui/material';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { Table, TableCellData, TableRowData } from './components/Table';
+import { DataTable, DataTableCell, DataTableRow } from './components/DataTable';
 import { generateSchedule, ScheduleData } from './calculation';
 import { PageStyleWrapper } from './StyleWrapper';
 import { useAppContext } from './AppContext';
@@ -38,7 +38,7 @@ const Home = () => {
     setScheduleData(paymentSchedule);
   };
 
-  const columnLabels: TableCellData[] = [
+  const columnLabels: DataTableCell[] = [
     {
       value: `Month`,
       key: `month`,
@@ -61,7 +61,7 @@ const Home = () => {
     },
   ];
 
-  const rows = scheduleData.map((data: ScheduleData, index): TableRowData => {
+  const rows = scheduleData.map((data: ScheduleData, index): DataTableRow => {
     const locale = `en-US`;
     const options = { style: `currency`, currency: `USD` };
 
@@ -124,7 +124,7 @@ const Home = () => {
       </form>
       {!!scheduleData.length && (
         <Box py={1}>
-          <Table columnLabels={columnLabels} rows={rows} />
+          <DataTable columnLabels={columnLabels} rows={rows} />
         </Box>
       )}
     </PageStyleWrapper>

@@ -1,32 +1,25 @@
 import React from 'react';
-import {
-  Table as MuiTable,
-  TableContainer,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableRow,
-} from '@mui/material';
+import { Table, TableContainer, TableBody, TableCell, TableHead, TableRow } from '@mui/material';
 
-export type TableCellData = {
+export type DataTableCell = {
   key: string;
   value: React.ReactNode;
 };
 
-export type TableRowData = {
+export type DataTableRow = {
   id: string;
-  data: TableCellData[];
+  data: DataTableCell[];
 };
 
-type TableProps = {
-  columnLabels?: TableCellData[];
-  rows: TableRowData[];
+type DataTableProps = {
+  columnLabels?: DataTableCell[];
+  rows: DataTableRow[];
 };
 
-const Table = ({ columnLabels = [], rows = [] }: TableProps) => {
+const DataTable = ({ columnLabels = [], rows = [] }: DataTableProps) => {
   return (
     <TableContainer>
-      <MuiTable>
+      <Table>
         {!!columnLabels.length && (
           <TableHead>
             <TableRow>
@@ -49,9 +42,9 @@ const Table = ({ columnLabels = [], rows = [] }: TableProps) => {
             })}
           </TableBody>
         )}
-      </MuiTable>
+      </Table>
     </TableContainer>
   );
 };
 
-export { Table };
+export { DataTable };
