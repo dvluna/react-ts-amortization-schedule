@@ -91,19 +91,19 @@ const useNavMenu = () => {
   return { toggleNavMenu, setNavMenuItems };
 };
 
-const useToggleCalculationRounding = () => {
+const useCalculation = () => {
   const dispatch = React.useContext(DispatchContext);
 
   const toggleCalculationRounding = React.useCallback(() => {
     dispatch({ type: `TOGGLE_CALCULATION_ROUNDING` });
   }, [dispatch]);
 
-  return toggleCalculationRounding;
+  return { toggleCalculationRounding };
 };
 
 export {
   useAppContext,
   useNavMenu,
-  useToggleCalculationRounding,
+  useCalculation,
   AppContextProvider
 };
