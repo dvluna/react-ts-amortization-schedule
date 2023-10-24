@@ -28,37 +28,37 @@ const Home = () => {
     const totalPayments = loanTerm * 12;
     const interestRateInDecimal = interestRate / 100;
 
-    const scheduleData = generateSchedule({
+    const paymentSchedule = generateSchedule({
       totalPayments,
       interestRate: interestRateInDecimal,
       principle,
       isCalculationRounded,
     });
 
-    setScheduleData(scheduleData);
+    setScheduleData(paymentSchedule);
   };
 
   const columnLabels: TableCellData[] = [
     {
       value: `Month`,
-      key: `month`
+      key: `month`,
     },
     {
       value: `Interest Payment`,
-      key: `interestPayment`
+      key: `interestPayment`,
     },
     {
       value: `Principle Payment`,
-      key: `principlePayment`
+      key: `principlePayment`,
     },
     {
       value: `Monthly Payment`,
-      key: `monthlyPayment`
+      key: `monthlyPayment`,
     },
     {
       value: `Ending Principle`,
-      key: `principle`
-    }
+      key: `principle`,
+    },
   ];
 
   const rows = scheduleData.map((data: ScheduleData, index): TableRowData => {
@@ -87,7 +87,7 @@ const Home = () => {
         {
           value: data.principle.toLocaleString(locale, options),
           key: `principle`,
-        }
+        },
       ],
     };
   });
@@ -97,37 +97,39 @@ const Home = () => {
       <Title>Loan Amortization Schedule Calculator</Title>
       <form onSubmit={handleSubmit(onHandleSubmit)}>
         <TextField
-          required
+          required={true}
           type="number"
           label="Loan amount"
-          InputProps={{ startAdornment: (<InputAdornment position="start">$</InputAdornment>) }}
+          InputProps={{ startAdornment: <InputAdornment position="start">$</InputAdornment> }}
           {...register(`principle`)}
         />
         <TextField
-          required
+          required={true}
           type="number"
           label="Loan term"
-          InputProps={{ endAdornment: (<InputAdornment position="end">years</InputAdornment>) }}
+          InputProps={{ endAdornment: <InputAdornment position="end">years</InputAdornment> }}
           {...register(`loanTerm`)}
         />
         <TextField
-          required
+          required={true}
           type="number"
           label="Interest rate"
           inputProps={{ step: 0.001 }}
-          InputProps={{ endAdornment: (<InputAdornment position="end">%</InputAdornment>) }}
+          InputProps={{ endAdornment: <InputAdornment position="end">%</InputAdornment> }}
           {...register(`interestRate`)}
         />
-        <Button sx={{ p: 2 }} type="submit" variant="contained">Calculate Payments</Button>
+        <Button sx={{ p: 2 }} type="submit" variant="contained">
+          Calculate Payments
+        </Button>
       </form>
-      {!!scheduleData.length &&
+      {!!scheduleData.length && (
         <Box py={1}>
           <Table columnLabels={columnLabels} rows={rows} />
         </Box>
-      }
+      )}
     </PageStyleWrapper>
   );
-}
+};
 
 const Title = styled.h1({ fontSize: 28 });
 

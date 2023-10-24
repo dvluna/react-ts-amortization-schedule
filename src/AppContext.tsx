@@ -25,7 +25,7 @@ type State = {
 type ActionType =
   | { type: `TOGGLE_CALCULATION_ROUNDING` }
   | { type: `TOGGLE_NAV_MENU` }
-  | { type: `SET_NAV_MENU_ITEMS`, navMenuItems: NavMenuItem[] };
+  | { type: `SET_NAV_MENU_ITEMS`; navMenuItems: NavMenuItem[] };
 
 const reducer: React.Reducer<State, ActionType> = produce(
   (draft: Draft<State>, action: ActionType) => {
@@ -44,22 +44,22 @@ const reducer: React.Reducer<State, ActionType> = produce(
     }
 
     /** no default */
-  }
+  },
 );
 
 const AppContext = React.createContext({} as State);
-const DispatchContext = React.createContext<React.Dispatch<ActionType>>(() => { })
+const DispatchContext = React.createContext<React.Dispatch<ActionType>>(() => {});
 
 const AppContextProvider = ({ children }: React.PropsWithChildren) => {
   const [isCalculationRounded, setIsCalculationRounded] = useLocalStorage(
     `isCalculationRounded`,
-    true
+    true,
   );
 
   const [state, dispatch] = React.useReducer(reducer, {
     isCalculationRounded,
     isNavMenuOpen: false,
-    navMenuItems: []
+    navMenuItems: [],
   });
 
   React.useEffect(() => {
@@ -67,29 +67,13 @@ const AppContextProvider = ({ children }: React.PropsWithChildren) => {
   }, [state.isCalculationRounded, setIsCalculationRounded]);
 
   return (
-    <DispatchContext.Provider value={dispatch} >
-      <AppContext.Provider value={state}>
-        {children}
-      </AppContext.Provider>
+    <DispatchContext.Provider value={dispatch}>
+      <AppContext.Provider value={state}>{children}</AppContext.Provider>
     </DispatchContext.Provider>
   );
-}
+};
 
 const useAppContext = () => React.useContext(AppContext);
-
-const useNavMenu = () => {
-  const dispatch = React.useContext(DispatchContext);
-
-  const toggleNavMenu = React.useCallback(() => {
-    dispatch({ type: `TOGGLE_NAV_MENU` });
-  }, [dispatch]);
-
-  const setNavMenuItems = React.useCallback((navMenuItems: NavMenuItem[]) => {
-    dispatch({ type: `SET_NAV_MENU_ITEMS`, navMenuItems });
-  }, [dispatch]);
-
-  return { toggleNavMenu, setNavMenuItems };
-};
 
 const useCalculation = () => {
   const dispatch = React.useContext(DispatchContext);
@@ -101,9 +85,21 @@ const useCalculation = () => {
   return { toggleCalculationRounding };
 };
 
-export {
-  useAppContext,
-  useNavMenu,
-  useCalculation,
-  AppContextProvider
+const useNavMenu = () => {
+  const dispatch = React.useContext(DispatchContext);
+
+  const toggleNavMenu = React.useCallback(() => {
+    dispatch({ type: `TOGGLE_NAV_MENU` });
+  }, [dispatch]);
+
+  const setNavMenuItems = React.useCallback(
+    (navMenuItems: NavMenuItem[]) => {
+      dispatch({ type: `SET_NAV_MENU_ITEMS`, navMenuItems });
+    },
+    [dispatch],
+  );
+
+  return { toggleNavMenu, setNavMenuItems };
 };
+
+export { useAppContext, useCalculation, useNavMenu, AppContextProvider };

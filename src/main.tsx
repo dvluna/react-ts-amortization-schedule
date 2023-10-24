@@ -1,9 +1,9 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
+import React from 'react';
+import ReactDOM from 'react-dom/client';
 import { ThemeProvider, createTheme } from '@mui/material';
 import { BrowserRouter } from 'react-router-dom';
 
-import { App } from './App'
+import { App } from './App';
 import { BaselineStyleWrapper } from './StyleWrapper';
 import { AppContextProvider } from './AppContext';
 
@@ -22,19 +22,19 @@ const darkTheme = createTheme({
         root: {
           backgroundColor: `#424242`,
         },
-      }
+      },
     },
     MuiTextField: {
       styleOverrides: {
         root: {
           marginRight: 12,
         },
-      }
+      },
     },
-  }
+  },
 });
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
+ReactDOM.createRoot(document.getElementById(`root`)!).render(
   <React.StrictMode>
     <BrowserRouter>
       <BaselineStyleWrapper>
@@ -46,4 +46,4 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       </BaselineStyleWrapper>
     </BrowserRouter>
   </React.StrictMode>,
-)
+);

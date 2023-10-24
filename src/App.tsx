@@ -1,3 +1,4 @@
+import React from 'react';
 import { NavBar } from './components/NavBar';
 
 import { useNavMenu } from './AppContext';
@@ -9,8 +10,8 @@ const App = () => {
   setNavMenuItems([
     {
       label: `Home`,
-      to: `/`
-    }
+      to: `/`,
+    },
   ]);
 
   return (
@@ -18,7 +19,7 @@ const App = () => {
       <NavBar />
       <Routes />
     </>
-  )
-}
+  );
+};
 
-export { App }
+export { App };

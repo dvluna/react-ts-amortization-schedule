@@ -6,15 +6,18 @@ import styled from '@emotion/styled';
 const BaselineStyleWrapper = ({ children }: React.PropsWithChildren) => {
   return (
     <>
-      <Global styles={css`
-        body {
-          background-color: #111;
-          color: #FFF;
-          height: 100vh;
-          margin: 0;
-          padding: 0;
-          max-width: 100vw;
-        }`} />
+      <Global
+        styles={css`
+          body {
+            background-color: #111;
+            color: #fff;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            max-width: 100vw;
+          }
+        `}
+      />
       {children}
     </>
   );

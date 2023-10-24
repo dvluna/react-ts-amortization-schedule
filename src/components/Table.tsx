@@ -27,26 +27,28 @@ const Table = ({ columnLabels = [], rows = [] }: TableProps) => {
   return (
     <TableContainer>
       <MuiTable>
-        {!!columnLabels.length && <TableHead>
-          <TableRow>
-            {columnLabels.map((cell) => {
-              return (<TableCell key={cell.key}>{cell.value}</TableCell>);
+        {!!columnLabels.length && (
+          <TableHead>
+            <TableRow>
+              {columnLabels.map((cell) => {
+                return <TableCell key={cell.key}>{cell.value}</TableCell>;
+              })}
+            </TableRow>
+          </TableHead>
+        )}
+        {!!rows.length && (
+          <TableBody>
+            {rows.map((row) => {
+              return (
+                <TableRow key={row.id}>
+                  {row.data.map((cell) => {
+                    return <TableCell key={`${row.id}-cell-${cell.key}`}>{cell.value}</TableCell>;
+                  })}
+                </TableRow>
+              );
             })}
-          </TableRow>
-        </TableHead>}
-        {!!rows.length && <TableBody>
-          {rows.map((row) => {
-            return (
-              <TableRow key={row.id} >
-                {row.data.map((cell) => {
-                  return (
-                    <TableCell key={`${row.id}-cell-${cell.key}`}>{cell.value}</TableCell>
-                  );
-                })}
-              </TableRow>
-            );
-          })}
-        </TableBody>}
+          </TableBody>
+        )}
       </MuiTable>
     </TableContainer>
   );

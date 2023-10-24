@@ -1,5 +1,14 @@
+import React from 'react';
 import {
-  AppBar, Box, Drawer, IconButton, List, ListItem, ListItemButton, ListItemText, Toolbar
+  AppBar,
+  Box,
+  Drawer,
+  IconButton,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
+  Toolbar,
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useAppContext, useNavMenu } from '../AppContext';
@@ -16,7 +25,7 @@ const NavBar = () => {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position='static'>
+      <AppBar position="static">
         <Toolbar>
           <IconButton onClick={toggleNavMenu}>
             <MenuIcon />
@@ -27,7 +36,7 @@ const NavBar = () => {
         <Box sx={{ width: 250 }} onClick={toggleNavMenu} onKeyDown={toggleNavMenu}>
           <List>
             {navMenuItems.map((navMenuItem) => (
-              <ListItem key={navMenuItem.label} disablePadding>
+              <ListItem key={navMenuItem.label} disablePadding={true}>
                 <ListItemButton onClick={handleNavigation(navMenuItem.to)}>
                   <ListItemText primary={navMenuItem.label} />
                 </ListItemButton>
@@ -37,7 +46,7 @@ const NavBar = () => {
         </Box>
       </Drawer>
     </Box>
-  )
+  );
 };
 
 export { NavBar };
