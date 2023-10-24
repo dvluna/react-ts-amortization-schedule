@@ -57,7 +57,7 @@ const Home = () => {
     },
     {
       value: `Ending Principle`,
-      key: `endingPrinciple`
+      key: `principle`
     }
   ];
 
@@ -70,7 +70,7 @@ const Home = () => {
       data: [
         {
           value: index + 1,
-          key: `paymentNum`,
+          key: `month`,
         },
         {
           value: data.interestPayment.toLocaleString(locale, options),
