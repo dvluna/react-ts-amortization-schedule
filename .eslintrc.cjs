@@ -100,7 +100,11 @@ module.exports = {
     '@typescript-eslint/no-explicit-any': ['error', { fixToUnknown: true }],
     /* Handled by Prettier. */
     '@typescript-eslint/no-extra-semi': 'off',
-    '@typescript-eslint/no-misused-promises': 'off',
+    "@typescript-eslint/no-misused-promises": [2, {
+      "checksVoidReturn": {
+        "attributes": false
+     }
+    }],
     '@typescript-eslint/no-namespace': 'error',
     '@typescript-eslint/no-unnecessary-boolean-literal-compare': 'error',
     '@typescript-eslint/no-unnecessary-condition': ['error'],
