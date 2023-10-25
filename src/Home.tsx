@@ -19,23 +19,29 @@ type FormValues = {
 };
 
 const Home = () => {
-  const { register, handleSubmit } = useForm<FormValues>();
   const { isCalculationRounded } = useAppContext();
+  const { register, handleSubmit } = useForm<FormValues>();
 
-  const [scheduleData, setScheduleData] = React.useState<ScheduleData[]>([]);
+  const [formValues, setFormValues] = React.useState<FormValues>({
+    principle: 0,
+    loanTerm: 0,
+    interestRate: 0,
+  });
 
-  const onHandleSubmit: SubmitHandler<FormValues> = ({ principle, loanTerm, interestRate }) => {
-    const totalPayments = loanTerm * 12;
-    const interestRateInDecimal = interestRate / 100;
+  const scheduleData: ScheduleData[] = React.useMemo(() => {
+    const totalPayments = formValues.loanTerm * 12;
+    const interestRateInDecimal = formValues.interestRate / 100;
 
-    const paymentSchedule = generateSchedule({
+    return generateSchedule({
       totalPayments,
       interestRate: interestRateInDecimal,
-      principle,
+      principle: formValues.principle,
       isCalculationRounded,
     });
+  }, [formValues.interestRate, formValues.loanTerm, formValues.principle, isCalculationRounded]);
 
-    setScheduleData(paymentSchedule);
+  const onHandleSubmit: SubmitHandler<FormValues> = (formData) => {
+    setFormValues(formData);
   };
 
   const columnLabels: DataTableCell[] = [
