@@ -7,12 +7,16 @@ import { Routes } from './Routes';
 const App = () => {
   const { setNavMenuItems } = useNavMenu();
 
-  setNavMenuItems([
-    {
-      label: `Home`,
-      to: `/`,
-    },
-  ]);
+  React.useEffect(() => {
+    setNavMenuItems([
+      {
+        label: `Home`,
+        to: `/`,
+      },
+    ]);
+
+    return () => setNavMenuItems([]);
+  }, [setNavMenuItems]);
 
   return (
     <>
