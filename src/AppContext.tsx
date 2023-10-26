@@ -4,9 +4,10 @@ import { produce } from 'immer';
 import type { Draft } from 'immer';
 import { useLocalStorage } from 'usehooks-ts';
 
-type NavMenuItem = {
+export type NavMenuItem = {
   /** Menu Item Label */
   label: string;
+
   /** Menu Item navigation destination */
   to: string;
 };
