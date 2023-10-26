@@ -4,8 +4,11 @@ import { Box, Button, InputAdornment, TextField } from '@mui/material';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { DataTable, DataTableCell, DataTableRow } from './components/DataTable';
 import { generateSchedule, ScheduleData } from './calculation';
-import { PageStyleWrapper } from './StyleWrapper';
 import { useAppContext } from './AppContext';
+import { PageStyleWrapper } from './StyleWrapper';
+
+const LOCALE = `en-US` as const;
+const LOCALE_CURRENCY_OPTIONS = { style: `currency`, currency: `USD` } as const;
 
 type FormValues = {
   /** Loan amount */
@@ -20,13 +23,18 @@ type FormValues = {
 
 const Home = () => {
   const { isCalculationRounded } = useAppContext();
-  const { register, handleSubmit } = useForm<FormValues>();
+  const { handleSubmit, register, setFocus } = useForm<FormValues>();
 
   const [formValues, setFormValues] = React.useState<FormValues>({
     principle: 0,
     loanTerm: 0,
     interestRate: 0,
   });
+
+  /** Focus loan amount (principle) field on mount */
+  React.useEffect(() => {
+    setFocus(`principle`);
+  }, [setFocus]);
 
   const onHandleSubmit: SubmitHandler<FormValues> = (formData) => {
     setFormValues(formData);
@@ -55,22 +63,18 @@ const Home = () => {
     },
   ];
 
-  const rows = React.useMemo(() => {
-    const totalPayments = formValues.loanTerm * 12;
-    const interestRateInDecimal = formValues.interestRate / 100;
-
-    const scheduleData = generateSchedule({
-      totalPayments,
-      interestRate: interestRateInDecimal,
+  const scheduleData = React.useMemo(() => {
+    return generateSchedule({
+      totalPayments: formValues.loanTerm * 12,
+      interestRate: formValues.interestRate / 100,
       principle: formValues.principle,
       isCalculationRounded,
     });
+  }, [formValues.interestRate, formValues.loanTerm, formValues.principle, isCalculationRounded]);
 
-    return scheduleData.map((data: ScheduleData, index): DataTableRow => {
-      const locale = `en-US`;
-      const options = { style: `currency`, currency: `USD` };
-
-      return {
+  const rows = React.useMemo(() => {
+    return scheduleData.map(
+      (data: ScheduleData, index): DataTableRow => ({
         id: crypto.randomUUID(),
         data: [
           {
@@ -78,25 +82,25 @@ const Home = () => {
             key: `month`,
           },
           {
-            value: data.interestPayment.toLocaleString(locale, options),
+            value: data.interestPayment.toLocaleString(LOCALE, LOCALE_CURRENCY_OPTIONS),
             key: `interestPayment`,
           },
           {
-            value: data.principlePayment.toLocaleString(locale, options),
+            value: data.principlePayment.toLocaleString(LOCALE, LOCALE_CURRENCY_OPTIONS),
             key: `principlePayment`,
           },
           {
-            value: data.monthlyPayment.toLocaleString(locale, options),
+            value: data.monthlyPayment.toLocaleString(LOCALE, LOCALE_CURRENCY_OPTIONS),
             key: `monthlyPayment`,
           },
           {
-            value: data.principle.toLocaleString(locale, options),
+            value: data.principle.toLocaleString(LOCALE, LOCALE_CURRENCY_OPTIONS),
             key: `principle`,
           },
         ],
-      };
-    });
-  }, [formValues.interestRate, formValues.loanTerm, formValues.principle, isCalculationRounded]);
+      }),
+    );
+  }, [scheduleData]);
 
   return (
     <PageStyleWrapper>
