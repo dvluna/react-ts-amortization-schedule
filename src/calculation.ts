@@ -2,10 +2,10 @@ type CalcMonthlyArgs = {
   /** Principle */
   principle: number /* P */;
 
-  /** Monthly interest rate */
+  /** Monthly interest rate in decimal */
   monthlyInterestRate: number /* r */;
 
-  /** Total number of payments */
+  /** Total number of monthly payments */
   totalPayments: number /* n */;
 };
 
@@ -13,10 +13,10 @@ type GenScheduleArgs = {
   /** Principle */
   principle: number;
 
-  /** Yearly interest rate */
+  /** Yearly interest rate in decimal */
   interestRate: number;
 
-  /** Total number of payments */
+  /** Total number of monthly payments */
   totalPayments: number;
 
   /** Calculations rounded to nearest cent */
